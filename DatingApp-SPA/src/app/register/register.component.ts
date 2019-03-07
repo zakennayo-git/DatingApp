@@ -1,6 +1,7 @@
 import { AlertifyService } from './../_services/alertify.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.model).subscribe(() => {
       this.alertify.success('Zarejestrowano pomyślnie, teraz możesz się zalogować');
+      this.cancelRegister.emit(false);
     }, error => {
       this.alertify.error(error);
     });
